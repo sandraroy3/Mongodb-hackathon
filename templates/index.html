@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>ToDo App</title>
+		<title>Loan App</title>
 
 		<link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
 
@@ -22,16 +22,16 @@
 	<body>
 
 		<div class="container-fluid" id="wrapper">
-			
+
 			<div class="row">
 				<div class="col-lg-4 col-lg-offset-4" id="content">
 					<h2>WHAT DO YOU WANT TO DO TODAY?</h2>
-					
-					<form action="{{ url_for('add_todo') }}" method="POST" role="form">
-					
+
+					<form action="{{ url_for('add_user') }}" method="POST" role="form">
+
 						<div class="form-group">
 							<div class="input-group">
-							  <input name="new-todo" type="text" class="form-control" placeholder="Enter todo e.g. Delete junk files" aria-label="Todo" aria-describedby="add-btn">
+							  <input name="new-user" type="text" class="form-control" placeholder="Enter todo e.g. Delete junk files" aria-label="User" aria-describedby="add-btn">
 							  <span class="input-group-btn">
 								  <button type="submit" class="btn btn-default" id="add-btn">ADD</button>
 							  </span>
@@ -47,20 +47,15 @@
 										DELETE COMPLETED
 									</a>
 								</div>
-								<div class="btn-group">
-									<a type="button" href="{{ url_for('delete_all') }}" class="btn btn-warning">
-										DELETE ALL
-									</a>
-								</div>
 							</div>
 						</div>
 					</div>
 
 					<ul class="list-group t20">
-						{% for todo in todos %}
-						<a href="{{ url_for('complete', oid=todo._id )}}">
-							<li class="list-group-item {% if todo.complete %}todo-completed{% endif %}">
-								{{ todo.text }}
+						{% for user in users %}
+						<a href="{{ url_for('complete', username=username, oid=application._id )}}">
+							<li class="list-group-item {% if application.complete %}application-completed{% endif %}">
+								{{ user.text }}
 							</li>
 						</a>
 						{% endfor %}
