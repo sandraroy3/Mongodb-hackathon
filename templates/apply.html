@@ -1,8 +1,7 @@
-
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Simple login form</title>
+    <title>Loan application form</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
     <style>
       html, body {
@@ -33,7 +32,7 @@
       }
       h1 {
       text-align:center;
-      fone-size:18;
+      font-size:18;
       }
       button:hover {
       opacity: 0.8;
@@ -60,26 +59,26 @@
     </style>
   </head>
   <body>
-    <form method="POST" action="{{ url_for('login')}}" >
+    <form method="POST" action="{{ url_for('update_user')}}" >
       <br>
-      <h1>SIGN IN</h1>
+      <h1>Would you like to apply for a loan today?</h1>
+      <h1>Application</h1>
       <div class="formcontainer">
       <hr/>
       <div class="container">
-        <label for="uname"><strong>Username</strong></label>
-        <input type="text" placeholder="Enter Username" name="username" required>
-        <label for="password"><strong>Password</strong></label>
-        <input type="text" placeholder="Enter Password" name="pass" required>
+        <label for="name"><strong>Name</strong></label>
+        <input type="text" placeholder="Enter Name" name="name" required>
+        <br><br>
+        <label for="income"><strong>Income</strong></label>
+        <input type="number" placeholder="Enter Income" name="income" required>
+        <br><br>
+        <label for="address"><strong>Address</strong></label>
+        <input type="text" placeholder="Enter Address" name="address" required>
       </div>
-      <button type="submit">Login</button>
-      <div class="container" style="background-color: #eee">
-        <label style="padding-left: 15px">
-        <input type="checkbox"  checked="checked" name="remember"> Remember me
-        </label>
-        <span class="psw"><a href="#"> Forgot password?</a></span>
-      </div>
+      <button type="submit">Apply</button>
+
       <br>
-      <a href="register">Sign Up?</a>
+      <a href="base">Home</a>
     </form>
   </body>
 </html>
