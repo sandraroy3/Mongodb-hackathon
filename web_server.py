@@ -63,7 +63,6 @@ def update_user():
                          'address': request.form['address']}})
         update_status(request.form['income'])
         # return redirect(url_for('base'))
-      
     return render_template('apply.html')
 
 
