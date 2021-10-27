@@ -59,26 +59,24 @@
     </style>
   </head>
   <body>
-    <form method="POST" action="{{ url_for('update')}}" >
+    <form method="POST" action="{{ url_for('update_user')}}" >
       <br>
-      <h1>SIGN IN</h1>
+      <h1>Would you like to apply for a loan today?</h1>
+      <h1>Application</h1>
       <div class="formcontainer">
       <hr/>
       <div class="container">
         <label for="name"><strong>Name</strong></label>
-        <input type="text" placeholder="Enter Name" name="name" required>
-        <label for="incom"><strong>Income</strong></label>
+        <input type="text" placeholder="Enter Name" name="name" required><br><br>
+        <label for="income"><strong>Income</strong></label>
         <input type="number" placeholder="Enter Income" name="income" required>
-        <label for="address"><strong>Address</strong></label>
+        <br><br><label for="address"><strong>Address</strong></label>
         <input type="text" placeholder="Enter Address" name="address" required>
       </div>
       <button type="submit">Apply</button>
-      <div class="container" style="background-color: #eee">
-        <label style="padding-left: 15px">
-        </label>
-      </div>
+
       <br>
-      <a href="home">Home</a>
+      <a href="base">Home</a>
     </form>
   </body>
 </html>

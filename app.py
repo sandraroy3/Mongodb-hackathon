@@ -17,13 +17,13 @@ loans = mongo.db.loans
 @app.route("/")
 def index():
     if 'username' in session:
-        return 'You are logged in as following user: ' + session['username']
+        return render_template("apply.html")
+        # 'You are logged in as following user: ' + session['username']
     return render_template("index.html")
 
 @app.route("/login", methods=['POST'])
 def login():
     login_user = users.find_one({"username" : request.form['username']})
-    print(login_user)
     if login_user:
         # if bcrypt.hashpw(request.form['pass'].encode('utf-8'), login_user['password'].encode('utf-8')) == login_user['password'].encode('utf-8'):
         if request.form['pass']==login_user['password']:
