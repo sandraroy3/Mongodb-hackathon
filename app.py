@@ -45,43 +45,37 @@ def register():
         return 'Username already exists'
     return render_template('register.html')
 
-
 @app.route('/update', methods=['POST'])
 def update_user():
     if request.method =='POST':
-        users.update({'name': request.form['name'],
-                      'income': request.form['income'],
-                      'address': request.form['address']})
+        users.update_one({'username': session['username']},
+                         {"$set": {'name': request.form['name'],
+                         'income': request.form['income'],
+                         'address': request.form['address']}})
+        update_status(request.form['income'])
         return redirect(url_for('index'))
     return render_template('apply.html')
 
+
 @app.route('/update_status', methods=['POST'])
-def update_status():
+def update_status(income):
     if request.method =='POST':
-        users.update({'loan_status': request.form['status']})
+        if int(income) > 50000:
+            users.update_one({'username': session['username']},
+                            {"$set": {'loan_status': 'Aproved'}})
+        elif int(income) <= 50000:
+            users.update_one({'username': session['username']},
+                            {"$set": {'loan_status': 'DENIED'}})
         return redirect(url_for('index'))
     return render_template('status.html')
 
-# @app.route('/complete/<oid>') #not sure we need this
-# def complete(oid, username):
-#     '''Takes in a user and an application id, updates it to mark complete'''
-#     user = get_user_by_username(username)
-#     application = user.applications.find_one({'_id': ObjectId(oid)})
-#     application['complete'] = True
-#     # users.applications.save(user.application)
-#     return redirect(url_for('index'))
 
 # @app.route('/delete_completed_application')
 # def delete_completed():
-#     '''Deletes all the applications marked complete'''
+#     '''Deletes all the user applications marked complete'''
 #     users.applications.delete_many({'complete' : True})
 #     return redirect(url_for('index'))
 
-# not sure it is needed
-# @app.route('/delete_all')
-# def delete_all():
-#     todos.delete_many({})
-#     return redirect(url_for('index'))
 
 if (__name__ == '__main__'):
     app.secret_key='secretivekey'
