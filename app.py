@@ -18,10 +18,9 @@ loans = mongo.db.loans
 def index():
     if 'username' in session:
         return render_template("apply.html")
-        # 'You are logged in as following user: ' + session['username']
     return render_template("index.html")
 
-@app.route("/login", methods=['POST'])
+@app.route("/login", methods=['POST', 'GET'])
 def login():
     login_user = users.find_one({"username" : request.form['username']})
     if login_user:
@@ -63,11 +62,12 @@ def update_status(income):
         if int(income) > 50000:
             users.update_one({'username': session['username']},
                             {"$set": {'loan_status': 'Aproved'}})
+            return 'You are approved: ' + session['username']
         elif int(income) <= 50000:
             users.update_one({'username': session['username']},
                             {"$set": {'loan_status': 'DENIED'}})
-        return redirect(url_for('index'))
-    return render_template('status.html')
+            return 'You are denied: ' + session['username']
+    return render_template('base.html')
 
 
 # @app.route('/delete_completed_application')
